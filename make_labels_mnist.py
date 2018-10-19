@@ -40,4 +40,4 @@ for i, label in enumerate(cifar.train_labels):
         pass
 labels_cifar = cifar.train_labels
 
-torch.save(labels_cifar, './random_labels_cifar.pth')
+torch.save(labels_cifar, './random_labels_cifar_.pth')

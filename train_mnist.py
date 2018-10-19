@@ -43,11 +43,7 @@ def main():
     for seed in range(1, 3):
         torch.manual_seed(seed)
 
-        model = MnistNet()
-        model.conv1.weight.data *= 2
-        model.conv2.weight.data *= 2
-        model.fc1.weight.data *= 2
-        model.fc2.weight.data *= 2
+        model = MLP()
         model.cuda()
 
         optimizer = optim.SGD(model.parameters(), lr=1e-2, momentum=0)
@@ -67,12 +63,12 @@ def main():
         batch_size=1000, shuffle=True)
 
         # 10 epoches 
-        for epoch in range(1, 20 + 1):
+        for epoch in range(1, 30 + 1):
             train(model, train_loader, optimizer, epoch)
             test(model, test_loader)
         
-        torch.save(model.state_dict(), './model_weights/lenet_weights_{}.pth'.format(seed))
-        model.load_state_dict(torch.load('./model_weights/lenet_weights_{}.pth'.format(seed)))
+        torch.save(model.state_dict(), './model_weights/mlp_weights_{}.pth'.format(seed))
+        model.load_state_dict(torch.load('./model_weights/mlp_weights_{}.pth'.format(seed)))
 
 if __name__ == '__main__':
     main()

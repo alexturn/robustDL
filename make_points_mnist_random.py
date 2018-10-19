@@ -13,9 +13,9 @@ from tqdm import tqdm, trange
 import numpy as np
 from copy import deepcopy
 
-weight_dict_1 = torch.load('model_weights/mlp_weights_0.pth', map_location='cpu')
-weight_dict_2 = torch.load('model_weights/mlp_weights_1.pth', map_location='cpu')
-weight_dict_3 = torch.load('model_weights/mlp_weights_2.pth', map_location='cpu')
+weight_dict_1 = torch.load('model_weights/mlp_random_weights_42.pth', map_location='cpu')
+weight_dict_2 = torch.load('model_weights/mlp_random_weights_43.pth', map_location='cpu')
+weight_dict_3 = torch.load('model_weights/mlp_random_weights_44.pth', map_location='cpu')
 
 x = np.linspace(-0.4, 1.3, 50)
 y = np.linspace(-0.4, 1.3, 50)
@@ -43,6 +43,8 @@ test_loader = torch.utils.data.DataLoader(
                            transforms.Normalize((0.1307,), (0.3081,))
                        ])),
         batch_size=100, shuffle=True)
+#random
+test_loader.train_labels = torch.load('./random_labels_mnist.pth').long()
 
 def test(model, test_loader):
     model.eval()
@@ -72,6 +74,6 @@ for i in trange(X.shape[0]):
         net.load_state_dict(convex_hull_weights)
         Z_[i].append(test(net, test_loader))
 
-np.save('./plots/X_mnist', X)
-np.save('./plots/Y_mnist', Y)
-np.save('./plots/Z_mnist', Z_)
+np.save('./plots/X_mnist_random', X)
+np.save('./plots/Y_mnist_random', Y)
+np.save('./plots/Z_mnist_random', Z_)
