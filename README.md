@@ -36,7 +36,7 @@ After that, prepare data for three-points interpolations:
 $ CUDA_VISIBLE_DEVICES=id python make_points_{mnist/cifar}.py 
 $ CUDA_VISIBLE_DEVICES=id python train_{mnist/cifar}_random.py 
 ```
-And finally run cells in ```testing.ipynb``` to check surfaces. Two reproduce "flatness test" results run:
+And finally run cells in ```testing.ipynb``` to check surfaces. To reproduce "flatness test" results run:
 ``` bash
 $ CUDA_VISIBLE_DEVICES=id python measure_radius_{mnist/cifar}.py 
 $ CUDA_VISIBLE_DEVICES=id python measure_radius_{mnist/cifar}_top.py 
